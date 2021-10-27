@@ -8,13 +8,7 @@ class BooksController < ApplicationController
   def create
   @book = Book.new
   @book.assign_attributes(book_params)
-  if @book.valid?
-     @book.save!
-    redirect_to action: :index
-  else
-    @books = Book.all
-    render action: :index
-  end
+  redirect_to books_path
   end
 
 def edit
@@ -44,8 +38,10 @@ end
 private
 
 def book_params
-  params.fetch(:form, {}).permit(
+  params.require(:book,).permit(
       :title,
       :body,
   )
-  end
+end
+
+end
