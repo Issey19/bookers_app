@@ -23,6 +23,9 @@ class BooksController < ApplicationController
 
   def edit
    @book = Book.find(params[:id])
+   if @book.save
+        flash[:notice] = 'Book was successfully created.'
+   end
   end
 
   def update
