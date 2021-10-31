@@ -2,6 +2,7 @@ class BooksController < ApplicationController
   
   def index
     @books = Book.all
+    @book = Book.new 
   end
 
   def create
@@ -9,42 +10,35 @@ class BooksController < ApplicationController
       if @book.save
           redirect_to book_path(@book)
       else
-          render :new
+        @books = Book.all
+        render :index 
       end
+    
   end
   
   def show
    @book = Book.find(params[:id])
   end
 
- def edit
-  @book = Book.find(params[:id])
-  @book.assign_attributes(book_params) 
-  if @book.valid?
-    @book.save!
-    redirect_to action: :index
-  else
-    @books = Book.all
-    render action: :new
-  end
- end
-
   def edit
-    @book = Book.find(params[:id])
+   @book = Book.find(params[:id])
   end
-  
+
   def update
-    @book = book.find(params[:id])
-     @book.update(book_params)
-    redirect_to book_path(list.id)
+    @book = Book.find(params[:id])
+      @book.update(book_params)
+    if @book.save
+    redirect_to book_path(@book.id)
+    else
+        render :edit
+    end
   end
 
-　def destroy
-   book = Book.find(params[:id])
+  def destroy
+    book = Book.find(params[:id])
       book.destroy
-      redirect_to books_path
-end
-
+    redirect_to books_path
+  end
 
 private
 
@@ -52,5 +46,8 @@ private
   params.require(:book,).permit(
       :title,
       :body,
-  )
+    )
  end
+
+end
+

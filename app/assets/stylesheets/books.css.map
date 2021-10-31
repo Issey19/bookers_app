@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAEA,kBAAmB;EAClB,KAAK,EAAE,KAAK;EACZ,MAAM,EAAE,aAAa;EACrB,OAAO,EAAE,GAAG;EACZ,cAAc,EAAE,CAAC;EACjB,aAAa,EAAE,IAAI;EACnB,gBAAgB,EAAE,OAAO",
+"sources": ["books.scss"],
+"names": [],
+"file": "books.css"
+}
